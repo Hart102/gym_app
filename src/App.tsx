@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Home from "@/components/Home";
-import Benefits from "@/components/Benefits/Benefits";
+import Benefits from "@/components/Benefits";
+import OurClasses from "@/components/OurClasses";
 
 const App = () => {
 
@@ -9,6 +10,7 @@ const App = () => {
       <Navbar />
       <Home />
       <Benefits />
+      <OurClasses />
     </>
   )
 }

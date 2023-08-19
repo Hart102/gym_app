@@ -35,16 +35,14 @@ const Navbar = () => {
             mx-auto
             flex
             justify-between
-            py-8
             w-full
+            py-5
             px-5
             md:px-0
             md:w-5/6
             relative
             ">
-                <div>
-                    <img src={Logo} alt={Logo} />
-                </div>
+                <div><img src={Logo} alt={Logo} /></div>
                 <Bars3Icon
                     className="md:hidden h-6 w-6"
                     onClick={handleToggle}
@@ -53,14 +51,16 @@ const Navbar = () => {
                 <div ref={navRef} className="
                 hidden
                 absolute
-                right-0
-                w-100
+                md:relative
+                top-[70px]
+                md:top-0
+                right-[0.5%]
+                w-[99%]
                 bg-white
                 h-[90vh]
                 md:w-4/5
-                md:h-0
+                md:h-full
                 md:block
-                transition
                 ">
                     <div className="
                     w-full
@@ -80,12 +80,15 @@ const Navbar = () => {
                      md:space-y-0
                      md:flex-row
                      justify-between
+                     items-start
                     ">
                         {/* Right column */}
                         <div className="
                         md:flex
+                        w-full
+                        text-center
                         gap-8
-                        w-3/5
+                        md:w-3/5
                         space-y-6
                         md:space-y-0
                         ">
@@ -93,7 +96,7 @@ const Navbar = () => {
                         </div>
 
                         {/* Left column */}
-                        <div>
+                        <div className='flex justify-center w-full md:max-w-fit'>
                             <Button label="Become a member" />
                         </div>
                     </div>

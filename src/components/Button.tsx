@@ -13,10 +13,10 @@ const Button: React.FC<buttonInterface> = ({ label, onclick }) => {
     py-2
     px-5
     rounded
-    bg-secondary-500
+    bg-primary-500
+    hover:bg-secondary-500
     font-light
-    hover:bg-primary-500
-    hover:text-white
+    text-white
     " 
     onClick={onclick}>
       {label}
