@@ -1,26 +1,42 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import Logo from "@/assets/images/Logo.png"
 import Button from "./Button";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 
 
+
 let anchorTags: { href: string; label: string }[] = [];
 
 anchorTags = [
-    { href: "", label: "Home" },
-    { href: "", label: "Benefits" },
-    { href: "", label: "Our Classes" },
+    { href: "home", label: "Home" },
+    { href: "benefits", label: "Benefits" },
+    { href: "classes", label: "Our Classes" },
 ]
 
 const Navbar = () => {
 
     const navRef = useRef<HTMLDivElement>(null);
+    const [toggle, setToggle] = React.useState<boolean>(false);
+    const [currentPage, setCurrentPage] = React.useState<string>();
+
+    // Get current page
+    const indicateCurrentPage = (arg: string) => setCurrentPage(arg)
+
     const handleToggle = () => {
         if (navRef.current) {
-            if (navRef.current.classList.contains("hidden"))
-                return navRef.current.classList.remove("hidden")
+            if (navRef.current.classList.contains("hidden")) {
+                navRef.current.classList.remove("hidden")
+                setToggle(true)
+                return
+            }
             navRef.current.classList.add("hidden")
+            setToggle(false)
         }
+    }
+
+    const callBack = (arg: string) => {
+        handleToggle()
+        indicateCurrentPage(arg)
     }
 
     return (
@@ -43,34 +59,30 @@ const Navbar = () => {
             relative
             ">
                 <div><img src={Logo} alt={Logo} /></div>
-                <Bars3Icon
-                    className="md:hidden h-6 w-6"
-                    onClick={handleToggle}
-                />
+
+                {!toggle // Switch hamburgar icon
+                    ? <Bars3Icon className="md:hidden h-6 w-6" onClick={handleToggle} />
+                    : <XMarkIcon className="md:hidden h-6 w-6" onClick={handleToggle} />
+                }
 
                 <div ref={navRef} className="
                 hidden
                 absolute
                 md:relative
-                top-[70px]
+                top-[63px]
                 md:top-0
                 right-[0.5%]
-                w-[99%]
+                w-[70%]
                 bg-white
                 h-[90vh]
                 md:w-4/5
                 md:h-full
                 md:block
+                border-t
+                md:border-0
+                pt-20
+                md:pt-0
                 ">
-                    <div className="
-                    w-full
-                    flex
-                    justify-end">
-                        <XMarkIcon
-                            className="md:hidden h-6 w-6"
-                            onClick={handleToggle}
-                        />
-                    </div>
 
                     <div className="
                      w-full
@@ -84,15 +96,23 @@ const Navbar = () => {
                     ">
                         {/* Right column */}
                         <div className="
-                        md:flex
+                        flex
+                        flex-col
+                        md:flex-row
                         w-full
                         text-center
                         gap-8
                         md:w-3/5
-                        space-y-6
+                        space-y-3
                         md:space-y-0
+                        font-light
                         ">
-                            {anchorTags.map(tag => <p key={tag.label} className="font-light">{tag.label}</p>)}
+                            {anchorTags.map((tag) => (
+                                <a
+                                    href={`#${tag.href}`} key={tag.label} onClick={() => callBack(tag.href)}
+                                    className={currentPage === tag.href ? "text-primary-300" : ""}>{tag.label}
+                                </a>
+                            ))}
                         </div>
 
                         {/* Left column */}

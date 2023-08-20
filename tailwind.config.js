@@ -22,6 +22,7 @@ export default {
         "primary-500": "#FF6B66",
         "secondary-400": "#FFCD5B",
         "secondary-500": "#FFC132",
+        "rgba": "rgba(0, 0, 0, 0.5)"
       },
       content: {
         evolvetext: "url('./assets/EvolveText.png')",
