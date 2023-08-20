@@ -1,3 +1,4 @@
 # React + TypeScript + Vite
 
-React Typescript gym application.
+Gym application.
+Built with React, typescript, tailwindcss and motion framer
